@@ -3,6 +3,8 @@ from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 #from langchain_ollama import ChatOllama
 from langchain_anthropic import ChatAnthropic
+from langchain_mistralai import ChatMistralAI  # Import Mistral AI
+
 from crewai import LLM
 from dotenv import load_dotenv
 
@@ -38,6 +40,13 @@ def create_groq_llm(model, temperature):
     else:
         raise ValueError("Groq API key not set in .env file")
 
+def create_mistral_llm(model, temperature):
+    api_key = os.getenv('MISTRAL_API_KEY')  # Get Mistral API key
+    if api_key:
+        return ChatMistralAI(api_key=api_key, model=model)  # Create Mistral LLM instance
+    else:
+        raise ValueError("Mistral API key not set in .env file")  
+
 def create_ollama_llm(model, temperature):
     host = os.getenv('OLLAMA_HOST')
     if host:
@@ -63,6 +72,10 @@ LLM_CONFIG = {
     "Groq": {
         "models": ["groq/llama3-8b-8192","groq/llama3-70b-8192", "groq/mixtral-8x7b-32768"],
         "create_llm": create_groq_llm
+    },
+    "Mistral": {  # Add Mistral configuration
+        "models": ["mistral-large-latest"],  # Specify the Mistral model
+        "create_llm": create_mistral_llm
     },
     "Ollama": {
         "models": os.getenv("OLLAMA_MODELS", "").split(',') if os.getenv("OLLAMA_MODELS") else [],
