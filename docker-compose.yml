@@ -1,7 +1,9 @@
 version: '3'
 services:
   crewai-studio:
-    image: tham0nk/crewai-studio
+    build:
+      context: .  # This specifies the build context (current directory)
+      dockerfile: Dockerfile  # This specifies the Dockerfile to use
     ports:
       - "8501:8501"
     volumes:
