@@ -7,3 +7,6 @@
 .gitattributes
 .env_example
 Dockerfile
+__pycache__/
+.venv/
+crewai.db

@@ -17,5 +17,6 @@ app/__pycache__/*
 data
 data/*
 db/
-db/*
+db/
 stop_venv.bat
+.venv/

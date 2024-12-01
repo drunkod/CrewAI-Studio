@@ -1,5 +1,5 @@
 crewai
-crewai-tools
+#crewai-tools
 langchain
 langchain-community
 langchain-openai
@@ -9,3 +9,7 @@ langchain-ollama
 streamlit
 python-dotenv
 langchain-mistralai
+#langchain_huggingface
+langchain-community 
+huggingface-hub
+transformers
